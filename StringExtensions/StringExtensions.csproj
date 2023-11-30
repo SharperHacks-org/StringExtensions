@@ -1,0 +1,83 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Authors>Joseph W Donahue</Authors>
+    <Copyright>Joseph W Donahue &amp; Sharper Hacks LLC (WA)</Copyright>
+    <Company>Sharper Hacks LLC (US-WA)</Company>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Description>A collection of string extensions.</Description>
+    <AssemblyName>SharperHacks.CoreLibs.$(MSBuildProjectName)</AssemblyName>
+    <RootNamespace>SharperHacks.CoreLibs.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+    <FileVersion>0.0.0.0</FileVersion>
+    <Title>$(AssemblyName)</Title>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <EnforceCodeStyleInBuild>False</EnforceCodeStyleInBuild>
+    <EnableNETAnalyzers>True</EnableNETAnalyzers>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <IncludeSymbols>True</IncludeSymbols>
+    <PackageIcon>SHLLC-Logo.128.100.jpg</PackageIcon>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/SharperHacks-org/$(MSBuildProjectName)</PackageProjectUrl>
+    <PackageReadMeFile>README.md</PackageReadMeFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <PackageTags>String Extensions</PackageTags>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://ghihub.com/SharperHacks-org/$(MSBuildProjectName)</RepositoryUrl>
+    <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <TargetFrameworks>net7.0;net8.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AnalysisLevel>latest-recommended</AnalysisLevel>
+    <Deterministic>true</Deterministic>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PathMap>$(MSBuildThisFileDirectory)={SHLLC/CoreLibs/$(MSBuildProjectName)}/</PathMap>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0|AnyCPU'">
+    <WarningLevel>7</WarningLevel>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0|AnyCPU'">
+    <WarningLevel>7</WarningLevel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SharperHacks.CoreLibs.Constraints" Version="2.0.0" />
+    <PackageReference Include="SharperHacks.CoreLibs.Constants" Version="2.0.2" />
+    <PackageReference Include="SharperHacks.CoreLibs.Math" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="$(SolutionDir)LICENSE" Pack="true" PackagePath="" />
+    <None Update="LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(SolutionDir)README.md" Pack="true" PackagePath="">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(SolutionDir)*.jpg" Pack="true" PackagePath="\" />
+    <None Update="$(SolutionDir)*.jpg">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
