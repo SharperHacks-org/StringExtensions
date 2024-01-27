@@ -2,7 +2,7 @@
 # StringExtensions Library for .NET
 ## SharperHacks.CoreLibs.StringExtensions
 
-Defines classes and methods to verify runtime contraints are met.
+Some useful string extensions.
 
 Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE).
 
@@ -20,7 +20,7 @@ Nuget: https://www.nuget.org/packages/SharperHacks.CoreLibs.Constraints
 Static class implementing static string extension methods:
 
 ``` 
-/// Determines whether any of the elements in values exists in str.
+/// Determines whether any of the elements in values exists in str (no LINQ).
 public static bool ContainsAny(this string str, params char[] values) ... 
 public static bool ContainsAny(this string str, params string[] values) ...
 

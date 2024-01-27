@@ -15,14 +15,14 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
-    <PackageReference Include="MSTest.TestAdapter" Version="3.1.1" />
-    <PackageReference Include="MSTest.TestFramework" Version="3.1.1" />
+    <PackageReference Include="MSTest.TestAdapter" Version="3.2.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="3.2.0" />
     <PackageReference Include="coverlet.collector" Version="6.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="SharperHacks.CoreLibs.Constraints" Version="2.0.0" />
-    <PackageReference Include="SharperHacks.CoreLibs.Reflection" Version="2.0.1" />
+    <PackageReference Include="SharperHacks.CoreLibs.Constraints" Version="3.0.0" />
+    <PackageReference Include="SharperHacks.CoreLibs.Reflection" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>
