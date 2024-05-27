@@ -54,9 +54,10 @@ public class StringExtensionSmokeTests
     [TestMethod]
     public void ToEncoding()
     {
+        // Note that UTF7 is no longer supported.
         var ascii = "ASCII";
         var utf8 = "UTF8";
-        var utf32 = "utf32";
+        var utf32 = "utf32"; // Conversion from string is case insensitive.
         var unicode = "uniCode";
 
         Assert.AreEqual(Encoding.ASCII, ascii.ToEncoding());

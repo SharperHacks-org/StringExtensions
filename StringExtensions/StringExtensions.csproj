@@ -53,7 +53,7 @@
 
   <ItemGroup>
     <PackageReference Include="SharperHacks.CoreLibs.Constraints" Version="3.0.0" />
-    <PackageReference Include="SharperHacks.CoreLibs.Constants" Version="3.0.0" />
+    <PackageReference Include="SharperHacks.CoreLibs.Constants" Version="3.2.0" />
     <PackageReference Include="SharperHacks.CoreLibs.Math" Version="2.0.0" />
   </ItemGroup>
 

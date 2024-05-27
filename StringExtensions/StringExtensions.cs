@@ -147,7 +147,7 @@ public static class StringExtensions
     /// <param name="str">
     /// One of "ASCII", "UTF8", "UTF32" or "UNICODE".
     /// </param>
-    /// <returns>The appropriate encoding.</returns>
+    /// <returns>The appropriate Encoding instance.</returns>
     /// <exception cref="ArgumentException">If string is not a recognized encoding type.</exception>
     /// <remarks>UTF7 is obsolete and therefore not supported.</remarks>
     public static Encoding ToEncoding(this string str)
