@@ -32,7 +32,6 @@
     <RepositoryUrl>https://ghihub.com/SharperHacks-org/$(MSBuildProjectName)</RepositoryUrl>
     <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <TargetFrameworks>net7.0;net8.0</TargetFrameworks>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -51,10 +50,18 @@
     <WarningLevel>7</WarningLevel>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0|AnyCPU'">
+    <WarningLevel>7</WarningLevel>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0|AnyCPU'">
+    <WarningLevel>7</WarningLevel>
+  </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="SharperHacks.CoreLibs.Constraints" Version="3.0.0" />
-    <PackageReference Include="SharperHacks.CoreLibs.Constants" Version="3.2.0" />
-    <PackageReference Include="SharperHacks.CoreLibs.Math" Version="2.0.0" />
+    <PackageReference Include="SharperHacks.CoreLibs.Constraints" Version="4.0.0" />
+    <PackageReference Include="SharperHacks.CoreLibs.Constants" Version="4.0.0" />
+    <PackageReference Include="SharperHacks.CoreLibs.Math" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>

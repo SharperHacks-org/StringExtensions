@@ -1,0 +1,16 @@
+<Project>
+  <PropertyGroup>
+    <Authors>Joseph W Donahue</Authors>
+    <Copyright>Joseph W Donahue &amp; Sharper Hacks LLC (WA)</Copyright>
+    <Company>Sharper Hacks LLC (US-WA)</Company>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Deterministic>true</Deterministic>
+    <PathMap>$(SolutionDir)={SHLLC/CoreLibs/$(MSBuildSolutionName)}/</PathMap>
+  </PropertyGroup>
+</Project>

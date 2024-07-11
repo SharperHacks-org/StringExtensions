@@ -11,8 +11,8 @@ Contact: joseph@sharperhacks.org
 Nuget: https://www.nuget.org/packages/SharperHacks.CoreLibs.Constraints
 
 ### Targets
-- net7.0
 - net8.0
+- net9.0
 
 ### Classes
 
