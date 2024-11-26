@@ -1,7 +1,9 @@
-﻿// Copyright and trademark notices at the end of this file.
+// Copyright and trademark notices at the end of this file.
 
 using System.Collections.Immutable;
 using System.Globalization;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 using SharperHacks.CoreLibs.Constants;
@@ -55,6 +57,110 @@ public static class StringExtensions
                 return true;
             }
         }
+        return false;
+    }
+
+    /// <summary>
+    /// Determines whether a string is a member of strings.
+    /// </summary>
+    /// <param name="str"></param>
+    /// <param name="strings"></param>
+    /// <param name="comparer"></param>
+    /// <returns>True if str in array, false otherwise.</returns>
+    /// <exception cref="VerifyException">Thrown if str is null.</exception>
+    public static bool In(
+        this string str,
+        IEnumerable<string> strings,
+        IEqualityComparer<string>? comparer = default)
+    {
+        Verify.IsNotNull(str);
+        return strings.Contains(str, comparer);
+    }
+
+    /// <summary>
+    /// Determines whether a string is a member of strings.
+    /// </summary>
+    /// <param name="str"></param>
+    /// <param name="strings"></param>
+    /// <returns>True if str in array, false otherwise.</returns>
+    /// <exception cref="VerifyException">Thrown if str is null.</exception>
+    public static bool In(this string str, HashSet<string> strings)
+    {
+        Verify.IsNotNull(str);
+
+        return strings.Contains(str);
+    }
+
+    /// <summary>
+    /// Determines whether dictionary contains key, or a key or value that match
+    /// or contain str.
+    /// </summary>
+    /// <param name="str"></param>
+    /// <param name="dictionary"></param>
+    /// <param name="matchWholeKey"></param>
+    /// <param name="matchWholeValue"></param>
+    /// <returns></returns>
+    public static bool InDictionary(
+        this string str,
+        IDictionary<string, string> dictionary,
+        bool matchWholeKey = true,
+        bool matchWholeValue = true)
+    {
+        Verify.IsNotNull(str);
+
+        if (dictionary.ContainsKey(str)) return true;
+
+        foreach (var kv in dictionary)
+        {
+            if (!matchWholeKey && kv.Key.Contains(str)) return true;
+            if (kv.Value.Equals(str, StringComparison.Ordinal)) return true;
+            if (!matchWholeValue && kv.Value.Contains(str)) return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Determines whether dictionary contains a key matching str.
+    /// </summary>
+    /// <param name="str"></param>
+    /// <param name="dictionary"></param>
+    /// <returns></returns>
+    public static bool InKeys<Tv>(
+        this string str,
+        IDictionary<string, Tv> dictionary)
+    {
+        Verify.IsNotNullOrEmpty(str);
+
+        return dictionary.ContainsKey(str);
+    }
+
+    /// <summary>
+    /// Determines whether dictionary contains a value matching or containg str.
+    /// </summary>
+    /// <typeparam name="Tk"></typeparam>
+    /// <param name="str"></param>
+    /// <param name="dictionary"></param>
+    /// <param name="matchWholeValue"></param>
+    /// <returns></returns>
+    public static bool InValues<Tk>(
+        this string str,
+        IDictionary<Tk, string> dictionary,
+        bool matchWholeValue = true)
+    {
+        Verify.IsNotNull(str);
+
+        foreach(var kv in dictionary)
+        {
+            if (kv.Value.Equals(str, StringComparison.Ordinal) ||
+                (!matchWholeValue &&
+                kv.Value.Contains(str)
+                ))
+            {
+                return true;
+            }
+        }
+
         return false;
     }
 
@@ -140,6 +246,66 @@ public static class StringExtensions
 
         return true;
     }
+
+    /// <summary>
+    /// Determine whether str is not a member of strings.
+    /// </summary>
+    /// <param name="str"></param>
+    /// <param name="strings"></param>
+    /// <param name="comparer"></param>
+    /// <returns>True if str not in array, false otherwise.</returns>
+    /// <exception cref="VerifyException">Thrown if str is null.</exception>
+    public static bool NotIn(
+        this string str,
+        IEnumerable<string> strings,
+        IEqualityComparer<string>? comparer = default) => !strings.Contains(str, comparer);
+
+    /// <summary>
+    /// Determine whether str is not a member of strings.
+    /// </summary>
+    /// <param name="str"></param>
+    /// <param name="strings"></param>
+    /// <returns>True if str not in array, false otherwise.</returns>
+    /// <exception cref="VerifyException">Thrown if str is null.</exception>
+    public static bool NotIn(this string str, HashSet<string> strings) => !strings.Contains(str);
+
+    /// <summary>
+    /// Determines whether dictionary contains key, or a key or value that match
+    /// or contain str.
+    /// </summary>
+    /// <param name="str"></param>
+    /// <param name="dictionary"></param>
+    /// <param name="matchWholeKey"></param>
+    /// <param name="matchWholeValue"></param>
+    /// <returns></returns>
+    public static bool NotInDictionary(
+        this string str,
+        IDictionary<string, string> dictionary,
+        bool matchWholeKey = true,
+        bool matchWholeValue = true) => !str.InDictionary(dictionary, matchWholeKey, matchWholeValue);
+
+    /// <summary>
+    /// Determines whether dictionary does not contain a key matching str.
+    /// </summary>
+    /// <param name="str"></param>
+    /// <param name="dictionary"></param>
+    /// <returns></returns>
+    public static bool NotInKeys<Tv>(
+        this string str,
+        IDictionary<string, Tv> dictionary) => !str.InKeys(dictionary);
+
+    /// <summary>
+    /// Determines whether dictionary does not, contain a value matching or containg str.
+    /// </summary>
+    /// <typeparam name="Tk"></typeparam>
+    /// <param name="str"></param>
+    /// <param name="dictionary"></param>
+    /// <param name="matchWholeValue"></param>
+    /// <returns></returns>
+    public static bool NotInValues<Tk>(
+        this string str,
+        IDictionary<Tk, string> dictionary,
+        bool matchWholeValue = true) => !str.InValues(dictionary, matchWholeValue);
 
     /// <summary>
     /// Convert a string representation of an encoding to the appropriate Encoding type.

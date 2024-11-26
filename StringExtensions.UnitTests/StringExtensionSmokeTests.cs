@@ -1,8 +1,9 @@
-﻿// Copyright and trademark notices at the end of this file.
+// Copyright and trademark notices at the end of this file.
 
 using SharperHacks.CoreLibs.Constants;
 using SharperHacks.CoreLibs.Math;
 
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
@@ -31,6 +32,85 @@ public class StringExtensionSmokeTests
     }
 
     [TestMethod]
+    public void InEnumerable()
+    {
+        var array = new[] { "One", "two", "three", string.Empty };
+
+        Assert.IsTrue(array[0].In(array));
+        Assert.IsTrue("One".In(array));
+        Assert.IsTrue("two".In(array));
+        Assert.IsTrue("three".In(array));
+        Assert.IsTrue(string.Empty.In(array));
+        Assert.IsFalse("four".In(array));
+    }
+
+    [TestMethod]
+    public void InHashSet()
+    {
+        var set = new HashSet<string>() { "One", "two", "three", string.Empty };
+
+        Assert.IsTrue("One".In(set));
+        Assert.IsTrue("two".In(set));
+        Assert.IsTrue("three".In(set));
+        Assert.IsTrue(string.Empty.In(set));
+        Assert.IsFalse("four".In(set));
+    }
+
+    [TestMethod]
+    public void InDictionary()
+    {
+        var data = new Dictionary<string, string>()
+        {
+            { "One", "~One" },
+            { "Fried", "Fish" },
+            { "FlipFlop", "cheap sandles" },
+            { "Nothing", string.Empty },
+        };
+
+        Assert.IsTrue("One".InDictionary(data));
+        Assert.IsTrue("Fried".InDictionary(data));
+        Assert.IsTrue("Fish".InDictionary(data));
+        Assert.IsTrue("Flop".InDictionary(data, false, false));
+        Assert.IsTrue("sandles".InDictionary(data, false, false));
+        Assert.IsTrue("Nothing".InDictionary(data, false, false));
+        Assert.IsFalse("Everything".InDictionary(data, false, false));
+    }
+
+    [TestMethod]
+    public void InKeys()
+    {
+        var dictionary = new Dictionary<string, string>()
+        {
+            { "One", "~One" },
+            { "Two", "~Two"},
+            { "Nothing", string.Empty },
+        };
+
+        Assert.IsTrue("One".InKeys(dictionary));
+        Assert.IsTrue("Two".InKeys(dictionary));
+        Assert.IsTrue("Nothing".InKeys(dictionary));
+        Assert.IsFalse("Everything".InKeys(dictionary));
+    }
+
+    [TestMethod]
+    public void InValues()
+    {
+        var dictionary = new Dictionary<string, string>()
+        {
+            { "One", "~One" },
+            { "Two", "~Two"},
+            { "Nothing", string.Empty },
+        };
+
+        Assert.IsTrue("~One".InValues(dictionary));
+        Assert.IsTrue("~Two".InValues(dictionary));
+        Assert.IsTrue(string.Empty.InValues(dictionary));
+        Assert.IsFalse("Everything".InValues(dictionary));
+
+        Assert.IsTrue("One".InValues(dictionary, false));
+    }
+
+    [TestMethod]
     public void IsAllDecimalDgitis()
     {
         Assert.IsTrue(_subsetOfDecimalDigits.IsAllDecimalDigits());
@@ -49,6 +129,84 @@ public class StringExtensionSmokeTests
         Assert.IsTrue(_subsetOfDecimalDigits.IsLimitedToRange(new Interval<char>("[0,9]")));
         Assert.IsTrue(string.Empty.IsLimitedToRange(new Interval<char>("(1,1)")));
         Assert.IsFalse(_subsetOfDecimalDigits.IsLimitedToRange(new Interval<char>("(a, z)")));
+    }
+
+    [TestMethod]
+    public void NotInEnumerable()
+    {
+        var array = new[] { "One", "two", "three" };
+
+        Assert.IsTrue("four".NotIn(array));
+        Assert.IsTrue(string.Empty.NotIn(array));
+        Assert.IsFalse("One".NotIn(array));
+        Assert.IsFalse("two".NotIn(array));
+        Assert.IsFalse("three".NotIn(array));
+    }
+
+    [TestMethod]
+    public void NotInHashset()
+    {
+        var set = new HashSet<string>() { "One", "two", "three" };
+
+        Assert.IsTrue("four".NotIn(set));
+        Assert.IsTrue(string.Empty.NotIn(set));
+        Assert.IsFalse("One".NotIn(set));
+        Assert.IsFalse("two".NotIn(set));
+        Assert.IsFalse("three".NotIn(set));
+    }
+
+    [TestMethod]
+    public void NotInDictionary()
+    {
+        var data = new Dictionary<string, string>()
+        {
+            { "One", "~One" },
+            { "Fried", "Fish" },
+            { "FlipFlop", "cheap sandles" },
+            { "Nothing", string.Empty },
+        };
+
+        Assert.IsFalse("One".NotInDictionary(data));
+        Assert.IsFalse("Fried".NotInDictionary(data));
+        Assert.IsFalse("Fish".NotInDictionary(data));
+        Assert.IsFalse("Flop".NotInDictionary(data, false, false));
+        Assert.IsFalse("sandles".NotInDictionary(data, false, false));
+        Assert.IsFalse("Nothing".NotInDictionary(data, false, false));
+        Assert.IsTrue("Everything".NotInDictionary(data, false, false));
+    }
+
+    [TestMethod]
+    public void NotInKeys()
+    {
+        var dictionary = new Dictionary<string, string>()
+        {
+            { "One", "~One" },
+            { "Two", "~Two"},
+            { "Nothing", string.Empty },
+        };
+
+        Assert.IsFalse("One".NotInKeys(dictionary));
+        Assert.IsFalse("Two".NotInKeys(dictionary));
+        Assert.IsFalse("Nothing".NotInKeys(dictionary));
+        Assert.IsTrue("Everything".NotInKeys(dictionary));
+    }
+
+    [TestMethod]
+    public void NotInValues()
+    {
+        var dictionary = new Dictionary<string, string>()
+        {
+            { "One", "~One" },
+            { "Two", "~Two"},
+            { "Nothing", string.Empty },
+        };
+
+        Assert.IsFalse("~One".NotInValues(dictionary));
+        Assert.IsFalse("~Two".NotInValues(dictionary));
+        Assert.IsFalse(string.Empty.NotInValues(dictionary));
+        Assert.IsTrue("Everything".NotInValues(dictionary));
+
+        Assert.IsFalse("One".NotInValues(dictionary, false));
     }
 
     [TestMethod]
