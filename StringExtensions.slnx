@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="build.cmd" />
+    <File Path="checkinTest.cmd" />
+    <File Path="CopyrightChecks.cmd" />
+    <File Path="Directory.Build.Props" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+    <File Path="SHLLC-Logo.128.100.jpg" />
+    <File Path="SHLLC-Logo.jpg" />
+  </Folder>
+  <Project Path="StringExtensions.UnitTests/StringExtensions.UnitTests.csproj" />
+  <Project Path="StringExtensions/StringExtensions.csproj" />
+</Solution>
