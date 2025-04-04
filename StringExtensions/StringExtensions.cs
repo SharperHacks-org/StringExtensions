@@ -59,6 +59,14 @@ public static class StringExtensions
     }
 
     /// <summary>
+    /// Change all '/' or '\' chacters as appropriate for the current OS..
+    /// </summary>
+    /// <param name="str"></param>
+    /// <returns></returns>
+    public static string CorrectOSPathSeparators(this string str) =>
+        Path.DirectorySeparatorChar == '\\' ? str.Replace('/', '\\') : str.Replace('\\', '/');
+
+    /// <summary>
     /// Determines whether a string is a member of strings.
     /// </summary>
     /// <param name="str"></param>

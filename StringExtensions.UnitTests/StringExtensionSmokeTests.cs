@@ -209,6 +209,25 @@ public class StringExtensionSmokeTests
     }
 
     [TestMethod]
+    public void ReplaceOSPathSeperators()
+    {
+        if (Path.DirectorySeparatorChar == '\\')
+        {
+            var testPath = "/this/and/that";
+            var expectedAfter = @"\this\and\that";
+
+            Assert.AreEqual(expectedAfter, testPath.CorrectOSPathSeparators());
+        }
+        else
+        {
+            var testPath = @"\this\and\that";
+            var expectedAfter = "/this/and/that";
+
+            Assert.AreEqual(expectedAfter, testPath.CorrectOSPathSeparators());
+        }
+    }
+
+    [TestMethod]
     public void ToEncoding()
     {
         // Note that UTF7 is no longer supported.
