@@ -254,6 +254,13 @@ public static class StringExtensions
     }
 
     /// <summary>
+    /// Determines whether the string is all white space.
+    /// </summary>
+    /// <param name="str"></param>
+    /// <returns></returns>
+    public static bool IsWhiteSpace(this string str) => string.IsNullOrWhiteSpace(str);
+
+    /// <summary>
     /// Determine whether str is not a member of strings.
     /// </summary>
     /// <param name="str"></param>

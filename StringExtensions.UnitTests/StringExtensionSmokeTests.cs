@@ -131,6 +131,20 @@ public class StringExtensionSmokeTests
     }
 
     [TestMethod]
+    public void IsWhiteSpace()
+    {
+        var empty = string.Empty;
+        var spaces = "    ";
+        var tabs = "\t\t\t";
+        var eols = "\r\n";
+
+        Assert.IsTrue(empty.IsWhiteSpace());
+        Assert.IsTrue(spaces.IsWhiteSpace());
+        Assert.IsTrue(tabs.IsWhiteSpace());
+        Assert.IsTrue(eols.IsWhiteSpace());
+    }
+
+    [TestMethod]
     public void NotInEnumerable()
     {
         var array = new[] { "One", "two", "three" };
