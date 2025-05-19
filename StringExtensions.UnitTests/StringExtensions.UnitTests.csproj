@@ -20,8 +20,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="SharperHacks.CoreLibs.Constraints" Version="4.3.0" />
-    <PackageReference Include="SharperHacks.CoreLibs.Reflection" Version="4.0.3" />
+    <PackageReference Include="SharperHacks.CoreLibs.Constraints" Version="5.0.0" />
+    <PackageReference Include="SharperHacks.CoreLibs.Reflection" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
