@@ -1,12 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Authors>Joseph W Donahue</Authors>
-    <Copyright>Joseph W Donahue &amp; Sharper Hacks LLC (WA)</Copyright>
-    <Company>Sharper Hacks LLC (US-WA)</Company>
-  </PropertyGroup>
-
-  <PropertyGroup>
     <Description>A collection of string extensions.</Description>
     <AssemblyName>SharperHacks.CoreLibs.$(MSBuildProjectName)</AssemblyName>
     <RootNamespace>SharperHacks.CoreLibs.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
@@ -15,6 +9,7 @@
     <AssemblyVersion>0.0.0.0</AssemblyVersion>
     <FileVersion>0.0.0.0</FileVersion>
     <Title>$(AssemblyName)</Title>
+    <PathMap>$(SolutionDir)={$(PathMapRoot)/$(SolutionName)}/</PathMap>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -74,26 +69,24 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="$(SolutionDir)LICENSE" Pack="true" PackagePath="" />
-    <None Update="LICENSE">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(SolutionDir)README.md" Pack="true" PackagePath="">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(SolutionDir)*.jpg" Pack="true" PackagePath="\" />
-    <None Update="$(SolutionDir)*.jpg">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+      <None Include="$(SolutionDir)LICENSE" Pack="true" PackagePath="" />
+      <None Update="LICENSE">
+          <Pack>True</Pack>
+          <PackagePath>\</PackagePath>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Include="$(SolutionDir)README.md" Pack="true" PackagePath="" />
+      <None Update="README.md">
+          <Pack>True</Pack>
+          <PackagePath>\</PackagePath>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Include="$(SolutionDir)*.jpg" Pack="true" PackagePath="\" />
+      <None Update="$(SolutionDir)*.jpg">
+          <Pack>True</Pack>
+          <PackagePath>\</PackagePath>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
   </ItemGroup>
 
 </Project>
