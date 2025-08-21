@@ -1,12 +1,12 @@
 // Copyright and trademark notices at the end of this file.
 
-using System.Collections.Immutable;
-using System.Globalization;
-using System.Text;
-
 using SharperHacks.CoreLibs.Constants;
 using SharperHacks.CoreLibs.Constraints;
 using SharperHacks.CoreLibs.Math.Interfaces;
+
+using System.Collections.Immutable;
+using System.Globalization;
+using System.Text;
 
 namespace SharperHacks.CoreLibs.StringExtensions;
 
