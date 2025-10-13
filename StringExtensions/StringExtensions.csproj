@@ -10,6 +10,7 @@
     <FileVersion>0.0.0.0</FileVersion>
     <Title>$(AssemblyName)</Title>
     <PathMap>$(SolutionDir)={$(PathMapRoot)/$(SolutionName)}/</PathMap>
+    <TargetFrameworks>$(TargetFrameworks)</TargetFrameworks>
   </PropertyGroup>
 
   <PropertyGroup>
