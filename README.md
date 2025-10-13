@@ -13,6 +13,7 @@ Nuget: https://www.nuget.org/packages/SharperHacks.CoreLibs.Constraints
 ### Targets
 - net8.0
 - net9.0
+- net10.0
 
 ### Classes
 
