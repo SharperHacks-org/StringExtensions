@@ -1,6 +1,7 @@
 // Copyright and trademark notices at the end of this file.
 
 using SharperHacks.CoreLibs.Constants;
+using SharperHacks.CoreLibs.IO;
 using SharperHacks.CoreLibs.Math;
 
 using System.Diagnostics.CodeAnalysis;
@@ -220,6 +221,30 @@ public class StringExtensionSmokeTests
         Assert.IsTrue("Everything".NotInValues(dictionary));
 
         Assert.IsFalse("One".NotInValues(dictionary, false));
+    }
+
+    [TestMethod]
+    public void IsValidFileName()
+    {
+        var badFileNameChars = new string(Path.GetInvalidFileNameChars());
+        var badDirectoryChars = new string(Path.GetInvalidPathChars());
+        var tooLong = new string('x', 261);
+
+        Assert.IsFalse(badFileNameChars.IsValidFileName());
+        Assert.IsFalse(badDirectoryChars.IsValidFileName());
+        Assert.IsFalse(tooLong.IsValidFileName());
+    }
+
+    [TestMethod]
+    public void IsValidDirectoryName()
+    {
+        var badFileNameChars = new string(Path.GetInvalidFileNameChars());
+        var badDirectoryChars = new string(Path.GetInvalidPathChars());
+        var tooLong = new string('x', 261);
+
+        Assert.IsFalse(badFileNameChars.IsValidFileName());
+        Assert.IsFalse(badDirectoryChars.IsValidFileName());
+        Assert.IsFalse(tooLong.IsValidFileName());
     }
 
     [TestMethod]

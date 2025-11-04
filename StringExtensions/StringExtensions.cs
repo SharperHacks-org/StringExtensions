@@ -254,6 +254,53 @@ public static class StringExtensions
     }
 
     /// <summary>
+    /// Determines whether a string can be used as a file name.
+    /// </summary>
+    /// <param name="str"></param>
+    /// <returns></returns>
+    public static bool IsValidFileName(this string str)
+    {
+        try
+        {
+            if (!string.IsNullOrEmpty(str) &&
+               str.IndexOfAny(Path.GetInvalidFileNameChars()) < 0)
+            {
+                var fqpn = Path.Join(
+                    Path.GetTempPath(),
+                    str);
+                File.WriteAllText(fqpn, "delete me");
+                File.Delete(fqpn);
+
+                return true;
+            }
+        }
+        catch { }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Determines whether a string can be used as a directory name.
+    /// </summary>
+    /// <param name="str"></param>
+    /// <returns></returns>
+    public static bool IsValidDirectoryName(this string str)
+    {
+        try
+        {
+            if (!string.IsNullOrEmpty(str) &&
+               str.IndexOfAny(Path.GetInvalidPathChars()) < 0)
+            {
+                Path.GetFullPath(str);
+                return true;
+            }
+        }
+        catch { }
+
+        return false;
+    }
+
+    /// <summary>
     /// Determines whether the string is all white space.
     /// </summary>
     /// <param name="str"></param>
