@@ -31,6 +31,15 @@ public class StringExtensionSmokeTests
         Assert.IsFalse(str1.IsAllDecimalDigits());
     }
 
+    [TestMethod] public void HasWhiteSpace()
+    {
+        var str1 = "blah blah";
+        var str2 = "buggers!";
+
+        Assert.IsTrue(str1.HasWhiteSpace());
+        Assert.IsFalse(str2.HasWhiteSpace());
+    }
+
     [TestMethod]
     public void InEnumerable()
     {
@@ -114,6 +123,50 @@ public class StringExtensionSmokeTests
     public void IsAllDecimalDgitis()
     {
         Assert.IsTrue(_subsetOfDecimalDigits.IsAllDecimalDigits());
+    }
+
+    [TestMethod]
+    public void IsAllHexDigits()
+    {
+        var allHexDigits = "0xA1";
+        var bareHexDigits = "E3";
+        var barePrefix = "0x";
+
+        Assert.IsTrue(allHexDigits.IsAllHexDigits(true));
+        Assert.IsTrue(allHexDigits.IsAllHexDigits(false));
+        Assert.IsTrue(bareHexDigits.IsAllHexDigits(false));
+        Assert.IsFalse(bareHexDigits.IsAllHexDigits(true));
+        Assert.IsTrue(_subsetOfDecimalDigits.IsAllHexDigits());
+        Assert.IsFalse("zyx".IsAllHexDigits());
+        Assert.IsFalse(barePrefix.IsAllHexDigits());
+        Assert.IsFalse(string.Empty.IsAllHexDigits());
+    }
+
+    [TestMethod]
+    public void IsValidDirectoryName()
+    {
+        var legal = "ok";
+        var badChars = new string(Path.GetInvalidPathChars());
+        var confusing = @"d:\any\d:anyOther";
+        var hasNulls = "okay\\so\\far\0\\oops!";
+
+        Assert.IsTrue(legal.IsValidDirectoryName());
+        Assert.IsFalse(string.Empty.IsValidDirectoryName());
+        Assert.IsFalse(badChars.IsValidDirectoryName());
+        Assert.IsTrue(confusing.IsValidDirectoryName());
+        Assert.IsFalse(hasNulls.IsValidDirectoryName());
+    }
+
+    [TestMethod]
+    public void IsValidFileName()
+    {
+        var legal = "yup";
+        var badFileNameChars = new string(Path.GetInvalidFileNameChars());
+        var tooLong = new string('x', 261);
+
+        Assert.IsTrue(legal.IsValidFileName());
+        Assert.IsFalse(badFileNameChars.IsValidFileName());
+        Assert.IsFalse(tooLong.IsValidFileName());
     }
 
     [TestMethod]
@@ -224,30 +277,6 @@ public class StringExtensionSmokeTests
     }
 
     [TestMethod]
-    public void IsValidFileName()
-    {
-        var badFileNameChars = new string(Path.GetInvalidFileNameChars());
-        var badDirectoryChars = new string(Path.GetInvalidPathChars());
-        var tooLong = new string('x', 261);
-
-        Assert.IsFalse(badFileNameChars.IsValidFileName());
-        Assert.IsFalse(badDirectoryChars.IsValidFileName());
-        Assert.IsFalse(tooLong.IsValidFileName());
-    }
-
-    [TestMethod]
-    public void IsValidDirectoryName()
-    {
-        var badFileNameChars = new string(Path.GetInvalidFileNameChars());
-        var badDirectoryChars = new string(Path.GetInvalidPathChars());
-        var tooLong = new string('x', 261);
-
-        Assert.IsFalse(badFileNameChars.IsValidFileName());
-        Assert.IsFalse(badDirectoryChars.IsValidFileName());
-        Assert.IsFalse(tooLong.IsValidFileName());
-    }
-
-    [TestMethod]
     public void ReplaceOSPathSeperators()
     {
         if (Path.DirectorySeparatorChar == '\\')
@@ -287,23 +316,6 @@ public class StringExtensionSmokeTests
             Assert.Fail("Failed to throw ArgumentException.");
         }
         catch {}
-    }
-
-    [TestMethod]
-    public void IsAllHexDigits()
-    {
-        var allHexDigits = "0xA1";
-        var bareHexDigits = "E3";
-        var barePrefix = "0x";
-
-        Assert.IsTrue(allHexDigits.IsAllHexDigits(true));
-        Assert.IsTrue(allHexDigits.IsAllHexDigits(false));
-        Assert.IsTrue(bareHexDigits.IsAllHexDigits(false));
-        Assert.IsFalse(bareHexDigits.IsAllHexDigits(true));
-        Assert.IsTrue(_subsetOfDecimalDigits.IsAllHexDigits());
-        Assert.IsFalse("zyx".IsAllHexDigits());
-        Assert.IsFalse(barePrefix.IsAllHexDigits());
-        Assert.IsFalse(string.Empty.IsAllHexDigits());
     }
 }
 

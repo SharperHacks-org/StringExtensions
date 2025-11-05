@@ -44,6 +44,38 @@ public static class StringExtensions
     /// <param name="values"></param>
     /// <returns></returns>
     /// <exception cref="VerifyException">Thrown if str is null.</exception>
+    public static bool ContainsAny(this string str, ImmutableHashSet<char> values)
+    {
+        Verify.IsNotNull(str, nameof(str));
+
+        foreach (var item in values)
+        {
+            if (str.Contains(item))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Determines where any of the elements str, are whitespace.
+    /// </summary>
+    /// <param name="str"></param>
+    /// <returns></returns>
+    public static bool HasWhiteSpace(this string str)
+    {
+        return str.ContainsAny(StandardSets.WhiteSpace);
+    }
+
+    /// <summary>
+    /// Determines whether any of the elements in values exists in str.
+    /// </summary>
+    /// <param name="str"></param>
+    /// <param name="values"></param>
+    /// <returns></returns>
+    /// <exception cref="VerifyException">Thrown if str is null.</exception>
     public static bool ContainsAny(this string str, params string[] values)
     {
         Verify.IsNotNull(str, nameof(str));
@@ -258,47 +290,19 @@ public static class StringExtensions
     /// </summary>
     /// <param name="str"></param>
     /// <returns></returns>
-    public static bool IsValidFileName(this string str)
-    {
-        try
-        {
-            if (!string.IsNullOrEmpty(str) &&
-               str.IndexOfAny(Path.GetInvalidFileNameChars()) < 0)
-            {
-                var fqpn = Path.Join(
-                    Path.GetTempPath(),
-                    str);
-                File.WriteAllText(fqpn, "delete me");
-                File.Delete(fqpn);
-
-                return true;
-            }
-        }
-        catch { }
-
-        return false;
-    }
+    public static bool IsValidFileName(this string str) =>
+        !string.IsNullOrEmpty(str)
+        && str.IndexOfAny(Path.GetInvalidFileNameChars()) < 0
+        && str.Length <= 255;
 
     /// <summary>
     /// Determines whether a string can be used as a directory name.
     /// </summary>
     /// <param name="str"></param>
     /// <returns></returns>
-    public static bool IsValidDirectoryName(this string str)
-    {
-        try
-        {
-            if (!string.IsNullOrEmpty(str) &&
-               str.IndexOfAny(Path.GetInvalidPathChars()) < 0)
-            {
-                Path.GetFullPath(str);
-                return true;
-            }
-        }
-        catch { }
-
-        return false;
-    }
+    public static bool IsValidDirectoryName(this string str) =>
+        !string.IsNullOrEmpty(str) 
+        && str.IndexOfAny(Path.GetInvalidPathChars()) < 0;
 
     /// <summary>
     /// Determines whether the string is all white space.
