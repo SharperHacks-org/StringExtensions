@@ -1,4 +1,12 @@
 <Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="Any CPU 32-bit preferred" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+    <Platform Name="ARM" />
+    <Platform Name="ARM64" />
+  </Configurations>
   <Folder Name="/Solution Items/">
     <File Path="build.cmd" />
     <File Path="checkinTest.cmd" />
