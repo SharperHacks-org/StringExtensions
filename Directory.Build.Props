@@ -1,8 +1,10 @@
 <Project>
   <PropertyGroup>
-    <Authors>Joseph W Donahue</Authors>
-    <Copyright>Joseph W Donahue &amp; Sharper Hacks LLC (WA)</Copyright>
+    <Authors>SharperHacks LLC (WA), Joseph W Donahue</Authors>
+    <Copyright>$(Authors)</Copyright>
     <Company>Sharper Hacks LLC (US-WA)</Company>
+    <CompanyNamespace>SharperHacks</CompanyNamespace>
+    <CollectionName>CoreLibs</CollectionName>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -10,13 +12,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Deterministic>true</Deterministic>
-    <PathMapRoot>SHLLC/CoreLibs</PathMapRoot>
+    <PathMapRoot>$(CompanyNamespace)/$(CollectionName)</PathMapRoot>
   </PropertyGroup>
 
   <PropertyGroup>
-    <BaseTargetFrameworks>net8.0;net9.0</BaseTargetFrameworks>
-    <VS2022TargetFrameWorks>net10.0</VS2022TargetFrameWorks>
     <ExtraTargetFramework Condition="'$(VisualStudioVersion)' >= '18.0'">net10.0</ExtraTargetFramework>
-    <TargetFrameworks>$(BaseTargetFrameworks);$(VS2022TargetFrameWorks)</TargetFrameworks>
+    <TargetFrameworks>$(ExtraTargetFramework);net9.0;net8.0;</TargetFrameworks>
   </PropertyGroup>
 </Project>
