@@ -2,7 +2,7 @@
 
 using SharperHacks.CoreLibs.Constants;
 using SharperHacks.CoreLibs.Constraints;
-using SharperHacks.CoreLibs.Math.Interfaces;
+using SharperHacks.CoreLibs.Interfaces;
 
 using System.Collections.Immutable;
 using System.Globalization;
@@ -60,16 +60,6 @@ public static class StringExtensions
     }
 
     /// <summary>
-    /// Determines where any of the elements str, are whitespace.
-    /// </summary>
-    /// <param name="str"></param>
-    /// <returns></returns>
-    public static bool HasWhiteSpace(this string str)
-    {
-        return str.ContainsAny(StandardSets.WhiteSpace);
-    }
-
-    /// <summary>
     /// Determines whether any of the elements in values exists in str.
     /// </summary>
     /// <param name="str"></param>
@@ -97,6 +87,16 @@ public static class StringExtensions
     /// <returns></returns>
     public static string CorrectOSPathSeparators(this string str) =>
         Path.DirectorySeparatorChar == '\\' ? str.Replace('/', '\\') : str.Replace('\\', '/');
+
+    /// <summary>
+    /// Determines where any of the elements str, are whitespace.
+    /// </summary>
+    /// <param name="str"></param>
+    /// <returns></returns>
+    public static bool HasWhiteSpace(this string str)
+    {
+        return str.ContainsAny(StandardSets.WhiteSpace);
+    }
 
     /// <summary>
     /// Determines whether a string is a member of strings.
