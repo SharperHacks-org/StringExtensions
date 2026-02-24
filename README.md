@@ -1,5 +1,7 @@
 ![SharperHacks logo](https://raw.githubusercontent.com/SharperHacks-org/Assets/main/Images/SHLLC-Logo.png)
-# StringExtensions Library for .NET
+# THIS PROJECT HAS BEEN MOVED TO [codeberg.org](https://codeberg.org/SharperHacks-org/StringExtensions).
+# THIS REPO WILL BE REMOVED.
+## StringExtensions Library for .NET
 ## SharperHacks.CoreLibs.StringExtensions
 
 Some useful string extensions.
@@ -100,3 +102,4 @@ public static bool NotInValues<Tk>(
 public static Encoding ToEncoding(this string str) ...
 
 ```
+
